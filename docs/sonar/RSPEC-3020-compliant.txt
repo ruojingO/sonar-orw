@@ -1,0 +1,6 @@
+public String [] getStringArray(List<String> strings) {
+  return strings.toArray(new String[0]); // Compliant, the toArray method will return an array of the desired type, and we can remove the casting operation
+}
+public String [] getPresizedStringArray(List<String> strings) {
+  return strings.toArray(new String[strings.size()]); // Compliant, but slightly less efficient than the previous example
+}

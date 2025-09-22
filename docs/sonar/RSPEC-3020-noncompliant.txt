@@ -1,0 +1,3 @@
+public String [] getStringArray(List<String> strings) {
+  return (String []) strings.toArray();  // Noncompliant, a ClassCastException will be thrown here
+}

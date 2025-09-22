@@ -1,0 +1,8 @@
+{
+  "noncompliant_code_blocks": [
+    "List<String> strings = new ArrayList<String>();                       // Noncompliant, the compiler can infer the type argument of the constructor invocation\nMap<String,List<Integer>> map = new HashMap<String,List<Integer>>();  // Noncompliant, the compiler can also infer complex type arguments"
+  ],
+  "compliant_code_blocks": [
+    "List<String> strings = new ArrayList<>();        // Compliant, the compiler will infer the type argument\nMap<String,List<Integer>> map = new HashMap<>(); // Compliant, the compiler will infer the type argument"
+  ]
+}

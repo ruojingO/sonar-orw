@@ -1,0 +1,8 @@
+{
+  "noncompliant_code_blocks": [
+    "package org.exAmple; // Noncompliant"
+  ],
+  "compliant_code_blocks": [
+    "package org.example;"
+  ]
+}

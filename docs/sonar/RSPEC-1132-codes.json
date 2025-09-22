@@ -1,0 +1,8 @@
+{
+  "noncompliant_code_blocks": [
+    "String myString = null;\n\nSystem.out.println(\"Equal? \" + myString.equals(\"foo\"));                        // Noncompliant; will raise a NPE\nSystem.out.println(\"Equal? \" + (myString != null && myString.equals(\"foo\")));  // Noncompliant; null check could be removed"
+  ],
+  "compliant_code_blocks": [
+    "System.out.println(\"Equal?\" + \"foo\".equals(myString));                         // properly deals with the null case"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "noncompliant_code_blocks": [
+    "public int numberOfMinutes(int hours) {\n  int seconds = 0;   // Noncompliant: \"seconds\" is unused\n  return hours * 60;\n}",
+    "public String name(Person p) {\n  return switch (p) {\n    case User(String name, int age) -> name; // Noncompliant: \"age\" is unused replace it with the unnamed variable pattern (starting from Java 22)\n    default -> throw new IllegalArgumentException();\n  };\n}",
+    "public String type(Person p) {\n  return switch (p) {\n    case User user -> \"user\"; // Noncompliant:  \"user\" is unused replace it with the unnamed variable pattern (starting from Java 22)\n    default -> throw new IllegalArgumentException();\n  };\n}",
+    "public int age(Person p) {\n  if (p instanceof User(String name, int age)) { // Noncompliant:  \"name\" is unused replace it with the unnamed variable pattern (starting from Java 22)\n    return age;\n  }\n}",
+    "public static int count(int[] elements) {\n  int count = 0;\n  for (var el : elements) { // Noncompliant:  \"el\" is unused replace it with the unnamed variable pattern (starting from Java 22)\n    count++;\n  }\n  return count;\n}",
+    "public void foo() {\n  try (var file = Files.createTempFile(directory, \"temp\", \".txt\")) { // Noncompliant:  \"file\" is unused replace it with the unnamed variable pattern (starting from Java 22)\n    System.out.println(\"file created\");\n  }\n}"
+  ],
+  "compliant_code_blocks": [
+    "public int numberOfMinutes(int hours) {\n  return hours * 60;\n}",
+    "public String name(Person p) {\n  return switch (p) {\n    case User(String name, _) -> name; // Compliant\n    default -> throw new IllegalArgumentException();\n  };\n}",
+    "public String type(Person p) {\n  return switch (p) {\n    case User _ -> \"user\"; // Compliant\n    default -> throw new IllegalArgumentException();\n  };\n}",
+    "public int age(Person p) {\n  if (p instanceof User(String _, int age)) { // Compliant\n    return age;\n  }\n}",
+    "public static int count(int[] elements) {\n  int count = 0;\n  for (var _ : elements) { // Compliant\n    count++;\n  }\n  return count;\n}",
+    "public void foo() {\n  try (var _ = Files.createTempFile(directory, \"temp\", \".txt\")) { // Compliant\n    System.out.println(\"file created\");\n  }\n}"
+  ]
+}

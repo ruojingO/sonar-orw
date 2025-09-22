@@ -1,0 +1,8 @@
+{
+  "noncompliant_code_blocks": [
+    "public class Raspberry extends Fruit  // Noncompliant; no serialVersionUID.\n        implements Serializable {\n  private String variety;\n\n  public Raspberry(Season ripe, String variety) { ...}\n  public void setVariety(String variety) {...}\n  public String getVarity() {...}\n}\n\npublic class Raspberry extends Fruit\n        implements Serializable {\n  private final int serialVersionUID = 1; // Noncompliant; not static & int rather than long"
+  ],
+  "compliant_code_blocks": [
+    "public class Raspberry extends Fruit\n        implements Serializable {\n  private static final long serialVersionUID = 1;\n  private String variety;\n\n  public Raspberry(Season ripe, String variety) { ...}\n  public void setVariety(String variety) {...}\n  public String getVarity() {...}\n}"
+  ]
+}

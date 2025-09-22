@@ -1,0 +1,8 @@
+{
+  "noncompliant_code_blocks": [
+    "public String [] getStringArray(List<String> strings) {\n  return (String []) strings.toArray();  // Noncompliant, a ClassCastException will be thrown here\n}"
+  ],
+  "compliant_code_blocks": [
+    "public String [] getStringArray(List<String> strings) {\n  return strings.toArray(new String[0]); // Compliant, the toArray method will return an array of the desired type, and we can remove the casting operation\n}\npublic String [] getPresizedStringArray(List<String> strings) {\n  return strings.toArray(new String[strings.size()]); // Compliant, but slightly less efficient than the previous example\n}"
+  ]
+}

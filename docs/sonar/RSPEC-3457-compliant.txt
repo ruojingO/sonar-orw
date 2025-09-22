@@ -1,0 +1,8 @@
+void logging(org.slf4j.Logger slf4jLog, java.util.logging.Logger logger) {
+    String.format("Too many arguments %d and %d", 1, 2);
+    String.format("First %s and then %s", "foo", "bar");
+
+    slf4jLog.debug("The number: {}", 1);
+
+    logger.log(level, "Can''t load library \"{0}\"!", "foo");
+}

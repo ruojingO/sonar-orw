@@ -1,0 +1,9 @@
+void logging(org.slf4j.Logger slf4jLog, java.util.logging.Logger logger) {
+    String.format("Too many arguments %d and %d", 1, 2, 3); // Noncompliant - the third argument '3' is unused
+    String.format("First {0} and then {1}", "foo", "bar");  //Noncompliant - it appears there is confusion with the use of "java.text.MessageFormat" - parameters "foo" and "bar" will be ignored here
+
+
+    slf4jLog.debug("The number: ", 1); // Noncompliant - String contains no format specifiers.
+
+    logger.log(level, "Can't load library \"{0}\"!", "foo"); // Noncompliant - the single quote ' must be escaped
+}

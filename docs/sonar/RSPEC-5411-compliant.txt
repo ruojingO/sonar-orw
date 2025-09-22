@@ -1,0 +1,12 @@
+Boolean b = getBoolean();
+if (Boolean.TRUE.equals(b)) {
+  foo();
+} else {
+  bar();  // will be invoked for both b == false and b == null
+}
+
+
+Boolean b = getBoolean();
+if(b != null){
+  String test = b ? "test" : "";
+}

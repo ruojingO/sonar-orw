@@ -1,0 +1,8 @@
+{
+  "noncompliant_code_blocks": [
+    "void doSomething() {\n  ; // Noncompliant - was used as a kind of TODO marker\n}\n\nvoid doSomethingElse() {\n  System.out.println(\"Hello, world!\");; // Noncompliant - double ;\n  // ...\n}"
+  ],
+  "compliant_code_blocks": [
+    "void doSomething() {}\n\nvoid doSomethingElse() {\n  System.out.println(\"Hello, world!\");\n  // ...\n  for (int i = 0; i < 3; i++) ; // Compliant if unique statement of a loop\n  // ...\n}"
+  ]
+}

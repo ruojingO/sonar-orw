@@ -1,0 +1,8 @@
+{
+  "noncompliant_code_blocks": [
+    "Boolean b = getBoolean();\nif (b) {  // Noncompliant, it will throw NPE when b == null\n  foo();\n} else {\n  bar();\n}"
+  ],
+  "compliant_code_blocks": [
+    "Boolean b = getBoolean();\nif (Boolean.TRUE.equals(b)) {\n  foo();\n} else {\n  bar();  // will be invoked for both b == false and b == null\n}\n\n\nBoolean b = getBoolean();\nif(b != null){\n  String test = b ? \"test\" : \"\";\n}"
+  ]
+}

@@ -1,0 +1,2 @@
+List<String> strings = new ArrayList<String>();                       // Noncompliant, the compiler can infer the type argument of the constructor invocation
+Map<String,List<Integer>> map = new HashMap<String,List<Integer>>();  // Noncompliant, the compiler can also infer complex type arguments

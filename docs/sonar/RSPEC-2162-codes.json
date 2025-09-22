@@ -1,0 +1,8 @@
+{
+  "noncompliant_code_blocks": [
+    "public class Fruit extends Food {\n  private Season ripe;\n\n  public boolean equals(Object obj) {\n    if (obj == this) {\n      return true;\n    }\n    if (obj == null) {\n      return false;\n    }\n    if (Fruit.class == obj.getClass()) { // Noncompliant; broken for child classes\n      return ripe.equals(((Fruit)obj).getRipe());\n    }\n    if (obj instanceof Fruit ) {  // Noncompliant; broken for child classes\n      return ripe.equals(((Fruit)obj).getRipe());\n    }\n    else if (obj instanceof Season) { // Noncompliant; symmetry broken for Season class\n      // ...\n    }\n    //..."
+  ],
+  "compliant_code_blocks": [
+    "public class Fruit extends Food {\n  private Season ripe;\n\n  public boolean equals(Object obj) {\n    if (obj == this) {\n      return true;\n    }\n    if (obj == null) {\n      return false;\n    }\n    if (this.getClass() == obj.getClass()) {\n      return ripe.equals(((Fruit)obj).getRipe());\n    }\n    return false;\n}"
+  ]
+}

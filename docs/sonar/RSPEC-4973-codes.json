@@ -1,0 +1,8 @@
+{
+  "noncompliant_code_blocks": [
+    "String firstName = getFirstName(); // String overrides equals\nString lastName = getLastName();\n\nif (firstName == lastName) { ... }; // Non-compliant; false even if the strings have the same value"
+  ],
+  "compliant_code_blocks": [
+    "String firstName = getFirstName();\nString lastName = getLastName();\n\nif (firstName != null && firstName.equals(lastName)) { ... };"
+  ]
+}

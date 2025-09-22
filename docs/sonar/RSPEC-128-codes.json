@@ -1,0 +1,8 @@
+{
+  "noncompliant_code_blocks": [
+    "switch (myVariable) {\n  case 1:\n    foo();\n    break;\n  case 2:  // Both 'doSomething()' and 'doSomethingElse()' will be executed. Is it on purpose ?\n    doSomething();\n  default:\n    doSomethingElse();\n    break;\n}"
+  ],
+  "compliant_code_blocks": [
+    "switch (myVariable) {\n  case 1:\n    foo();\n    break;\n  case 2:\n    doSomething();\n    break;\n  default:\n    doSomethingElse();\n    break;\n}"
+  ]
+}

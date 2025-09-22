@@ -1,0 +1,42 @@
+public int numberOfMinutes(int hours) {
+  return hours * 60;
+}
+
+
+public String name(Person p) {
+  return switch (p) {
+    case User(String name, _) -> name; // Compliant
+    default -> throw new IllegalArgumentException();
+  };
+}
+
+
+public String type(Person p) {
+  return switch (p) {
+    case User _ -> "user"; // Compliant
+    default -> throw new IllegalArgumentException();
+  };
+}
+
+
+public int age(Person p) {
+  if (p instanceof User(String _, int age)) { // Compliant
+    return age;
+  }
+}
+
+
+public static int count(int[] elements) {
+  int count = 0;
+  for (var _ : elements) { // Compliant
+    count++;
+  }
+  return count;
+}
+
+
+public void foo() {
+  try (var _ = Files.createTempFile(directory, "temp", ".txt")) { // Compliant
+    System.out.println("file created");
+  }
+}

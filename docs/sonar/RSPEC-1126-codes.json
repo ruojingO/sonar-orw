@@ -1,0 +1,8 @@
+{
+  "noncompliant_code_blocks": [
+    "boolean foo(Object param) {\n  if (expression) { // Noncompliant\n    bar(param, true, \"qix\");\n  } else {\n    bar(param, false, \"qix\");\n  }\n\n  if (expression) {  // Noncompliant\n    return true;\n  } else {\n    return false;\n  }\n}"
+  ],
+  "compliant_code_blocks": [
+    "boolean foo(Object param) {\n  bar(param, expression, \"qix\");\n\n  return expression;\n}"
+  ]
+}

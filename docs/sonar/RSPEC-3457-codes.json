@@ -1,0 +1,8 @@
+{
+  "noncompliant_code_blocks": [
+    "void logging(org.slf4j.Logger slf4jLog, java.util.logging.Logger logger) {\n    String.format(\"Too many arguments %d and %d\", 1, 2, 3); // Noncompliant - the third argument '3' is unused\n    String.format(\"First {0} and then {1}\", \"foo\", \"bar\");  //Noncompliant - it appears there is confusion with the use of \"java.text.MessageFormat\" - parameters \"foo\" and \"bar\" will be ignored here\n\n\n    slf4jLog.debug(\"The number: \", 1); // Noncompliant - String contains no format specifiers.\n\n    logger.log(level, \"Can't load library \\\"{0}\\\"!\", \"foo\"); // Noncompliant - the single quote ' must be escaped\n}"
+  ],
+  "compliant_code_blocks": [
+    "void logging(org.slf4j.Logger slf4jLog, java.util.logging.Logger logger) {\n    String.format(\"Too many arguments %d and %d\", 1, 2);\n    String.format(\"First %s and then %s\", \"foo\", \"bar\");\n\n    slf4jLog.debug(\"The number: {}\", 1);\n\n    logger.log(level, \"Can''t load library \\\"{0}\\\"!\", \"foo\");\n}"
+  ]
+}

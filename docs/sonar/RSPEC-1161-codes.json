@@ -1,0 +1,8 @@
+{
+  "noncompliant_code_blocks": [
+    "class ParentClass {\n  public boolean doSomething(){/*...*/}\n}\nclass FirstChildClass extends ParentClass {\n  public boolean doSomething(){/*...*/}  // Noncompliant\n}"
+  ],
+  "compliant_code_blocks": [
+    "class ParentClass {\n  public boolean doSomething(){/*...*/}\n}\nclass FirstChildClass extends ParentClass {\n  @Override\n  public boolean doSomething(){/*...*/}  // Compliant\n}"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "noncompliant_code_blocks": [
+    "public class Foo implements Serializable\n{\n  public static void doSomething() {\n    Foo foo = new Foo();\n    ...\n  }\n\n  private void unusedPrivateMethod() {...}\n  private void writeObject(ObjectOutputStream s) {...}  //Compliant, relates to the java serialization mechanism\n  private void readObject(ObjectInputStream in) {...}  //Compliant, relates to the java serialization mechanism\n}"
+  ],
+  "compliant_code_blocks": [
+    "public class Foo implements Serializable\n{\n  public static void doSomething(){\n    Foo foo = new Foo();\n    ...\n  }\n\n  private void writeObject(ObjectOutputStream s) {...}  //Compliant, relates to the java serialization mechanism\n  private void readObject(ObjectInputStream in) {...}  //Compliant, relates to the java serialization mechanism\n}"
+  ]
+}
