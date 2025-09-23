@@ -1,0 +1,13 @@
+﻿{
+    "extracted_at":  "2025-09-22T19:15:06+08:00",
+    "source":  "docs/sonar/RSPEC-2057.json",
+    "exceptions":  [
+                       {
+                           "title":  "Exceptions",
+                           "description_html":  "\u003cp\u003eRecords, Swing and AWT classes, \u003ccode\u003eabstract\u003c/code\u003e classes, \u003ccode\u003eThrowable\u003c/code\u003e and its subclasses (\u003ccode\u003eException\u003c/code\u003es and\n\u003ccode\u003eError\u003c/code\u003es), and classes marked with \u003ccode\u003e@SuppressWarnings(\"serial\")\u003c/code\u003e are ignored.\u003c/p\u003e",
+                           "code_blocks":  [
+
+                                           ]
+                       }
+                   ]
+}

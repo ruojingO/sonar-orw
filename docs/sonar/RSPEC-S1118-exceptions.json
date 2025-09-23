@@ -1,0 +1,13 @@
+﻿{
+    "extracted_at":  "2025-09-22T20:56:34+08:00",
+    "source":  "docs/sonar/RSPEC-S1118.json",
+    "exceptions":  [
+                       {
+                           "title":  "Exceptions",
+                           "description_html":  "\u003cp\u003eWhen a class contains \u003ccode\u003epublic static void main(String[] args)\u003c/code\u003e method it is not considered as a utility class and will be ignored by\nthis rule.\u003c/p\u003e",
+                           "code_blocks":  [
+
+                                           ]
+                       }
+                   ]
+}

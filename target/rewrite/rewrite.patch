@@ -1,0 +1,64 @@
+diff --git a/src/test/java/com/sonarorw/rules/s1116/S1116_uncompliant.java b/src/test/java/com/sonarorw/rules/s1116/S1116_uncompliant.java
+index 2a4433a..3d0badb 100755
+--- a/src/test/java/com/sonarorw/rules/s1116/S1116_uncompliant.java
++++ b/src/test/java/com/sonarorw/rules/s1116/S1116_uncompliant.java
+@@ -6,7 +6,8 @@ org.openrewrite.staticanalysis.NeedBraces
+ class S1116_uncompliant {
+     void run() {
+         int i = 0;;
+-        if (i == 0);
++        if (i == 0) {
++        }
+         {
+             System.out.println("extra semicolon");
+         }
+
+diff --git a/src/test/java/com/sonarorw/rules/s121/S121_exceptions.java b/src/test/java/com/sonarorw/rules/s121/S121_exceptions.java
+index d0d18eb..03d419c 100755
+--- a/src/test/java/com/sonarorw/rules/s121/S121_exceptions.java
++++ b/src/test/java/com/sonarorw/rules/s121/S121_exceptions.java
+@@ -3,13 +3,17 @@ org.openrewrite.staticanalysis.NeedBraces
+ class S121_exceptions {
+     boolean containsZero(int[] values) {
+         for (int value : values)
+-            if (value == 0) return true; // rewrite:skip - single-return on same line is allowed
++            if (value == 0) {
++                return true; // rewrite:skip - single-return on same line is allowed
++            }
+         return false;
+     }
+ 
+     void skipNegative(int[] values) {
+         for (int value : values)
+-            if (value < 0) continue; // rewrite:skip - allowed by exception note
++            if (value < 0) {
++                continue; // rewrite:skip - allowed by exception note
++            }
+     }
+ }
+ 
+
+diff --git a/src/test/java/com/sonarorw/rules/s121/S121_uncompliant.java b/src/test/java/com/sonarorw/rules/s121/S121_uncompliant.java
+index 2f77f1b..64e16f6 100755
+--- a/src/test/java/com/sonarorw/rules/s121/S121_uncompliant.java
++++ b/src/test/java/com/sonarorw/rules/s121/S121_uncompliant.java
+@@ -2,12 +2,15 @@ org.openrewrite.staticanalysis.NeedBraces
+ 
+ class S121_uncompliant {
+     void example(int value) {
+-        if (value > 10)
++        if (value > 10) {
+             System.out.println("large");
+-        for (int i = 0; i < value; i++)
++        }
++        for (int i = 0; i < value; i++) {
+             doWork(i);
+-        while (value-- > 0)
++        }
++        while (value-- > 0) {
+             doWork(value);
++        }
+     }
+ 
+     private void doWork(int input) {
+

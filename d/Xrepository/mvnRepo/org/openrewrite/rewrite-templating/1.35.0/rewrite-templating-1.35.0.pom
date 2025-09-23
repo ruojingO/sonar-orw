@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!-- This module was also published with a richer model, Gradle metadata,  -->
+  <!-- which should be used instead. Do not delete the following line which  -->
+  <!-- is to indicate to Gradle or any Gradle module metadata file consumer  -->
+  <!-- that they should prefer consuming it instead. -->
+  <!-- do_not_remove: published-with-gradle-metadata -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.openrewrite</groupId>
+  <artifactId>rewrite-templating</artifactId>
+  <version>1.35.0</version>
+  <name>rewrite-templating</name>
+  <description>Auto-templating for rewrite-java.</description>
+  <url>https://github.com/openrewrite/rewrite-templating</url>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>Team Moderne</name>
+      <email>team@moderne.io</email>
+    </developer>
+  </developers>
+  <scm>
+    <url>https://github.com/openrewrite/rewrite-templating.git</url>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>org.jspecify</groupId>
+      <artifactId>jspecify</artifactId>
+      <version>1.0.0</version>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+  <properties>
+    <nebula_Manifest_Version>1.0</nebula_Manifest_Version>
+    <nebula_Implementation_Title>org.openrewrite#rewrite-templating;1.35.0</nebula_Implementation_Title>
+    <nebula_Implementation_Version>1.35.0</nebula_Implementation_Version>
+    <nebula_Built_Status>release</nebula_Built_Status>
+    <nebula_Built_By>runner</nebula_Built_By>
+    <nebula_Built_OS>Linux</nebula_Built_OS>
+    <nebula_Build_Timezone>Etc/UTC</nebula_Build_Timezone>
+    <nebula_Build_Date_UTC>2025-09-10T10:37:07.215615616Z</nebula_Build_Date_UTC>
+    <nebula_Build_Date>2025-09-10_10:37:07</nebula_Build_Date>
+    <nebula_Gradle_Version>8.14.3</nebula_Gradle_Version>
+    <nebula_Module_Source/>
+    <nebula_Module_Origin>https://github.com/openrewrite/rewrite-templating.git</nebula_Module_Origin>
+    <nebula_Change>a869184</nebula_Change>
+    <nebula_Full_Change>a869184ed27513bebec66d4b9e9d9adb7899425b</nebula_Full_Change>
+    <nebula_Branch>HEAD</nebula_Branch>
+    <nebula_Build_Host>https://github.com</nebula_Build_Host>
+    <nebula_Build_Job>__run_2</nebula_Build_Job>
+    <nebula_Build_Number>92</nebula_Build_Number>
+    <nebula_Build_Id>17611087356</nebula_Build_Id>
+    <nebula_Build_Url>https://github.com/openrewrite/rewrite-templating/actions/runs/17611087356</nebula_Build_Url>
+    <nebula_Created_By>21.0.8+9-LTS (Eclipse Adoptium)</nebula_Created_By>
+    <nebula_Module_Owner>team@moderne.io</nebula_Module_Owner>
+    <nebula_Module_Email>team@moderne.io</nebula_Module_Email>
+    <nebula_X_Compile_Target_JDK>1.8</nebula_X_Compile_Target_JDK>
+    <nebula_X_Compile_Source_JDK>1.8</nebula_X_Compile_Source_JDK>
+    <nebula_Build_Java_Version>8</nebula_Build_Java_Version>
+  </properties>
+</project>

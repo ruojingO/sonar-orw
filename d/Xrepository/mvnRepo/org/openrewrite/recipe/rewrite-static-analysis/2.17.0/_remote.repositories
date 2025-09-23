@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Sep 23 21:12:40 CST 2025
+rewrite-static-analysis-2.17.0.jar>aliyun-plugin=
+rewrite-static-analysis-2.17.0.jar>aliyun-public=
+rewrite-static-analysis-2.17.0.pom>aliyun-public=

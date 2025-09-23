@@ -1,0 +1,13 @@
+﻿{
+    "extracted_at":  "2025-09-22T19:15:06+08:00",
+    "source":  "docs/sonar/RSPEC-128.json",
+    "exceptions":  [
+                       {
+                           "title":  "Exceptions",
+                           "description_html":  "\u003cp\u003eThis rule is relaxed in the following cases:\u003c/p\u003e\n\u003cpre\u003e\nswitch (myVariable) {\n  case 0:                                // Empty case used to specify the same behavior for a group of cases.\n  case 1:\n    doSomething();\n    break;\n  case 2:                                // Use of a fallthrough comment\n    // fallthrough\n  case 3:                                // Use of return statement\n    return;\n  case 4:                                // Use of throw statement\n    throw new IllegalStateException();\n  case 5:                                // Use of continue statement\n    continue;\n  default:                               // For the last case, use of break statement is optional\n    doSomethingElse();\n}\n\u003c/pre\u003e",
+                           "code_blocks":  [
+                                               "switch (myVariable) {\n  case 0:                                // Empty case used to specify the same behavior for a group of cases.\n  case 1:\n    doSomething();\n    break;\n  case 2:                                // Use of a fallthrough comment\n    // fallthrough\n  case 3:                                // Use of return statement\n    return;\n  case 4:                                // Use of throw statement\n    throw new IllegalStateException();\n  case 5:                                // Use of continue statement\n    continue;\n  default:                               // For the last case, use of break statement is optional\n    doSomethingElse();\n}"
+                                           ]
+                       }
+                   ]
+}

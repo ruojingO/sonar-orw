@@ -1,0 +1,13 @@
+﻿{
+    "extracted_at":  "2025-09-22T19:15:06+08:00",
+    "source":  "docs/sonar/RSPEC-5411.json",
+    "exceptions":  [
+                       {
+                           "title":  "Exceptions",
+                           "description_html":  "\u003cp\u003eThe issue is not raised if the expression is annotated \u003ccode\u003e@NonNull\u003c/code\u003e / \u003ccode\u003e@NotNull\u003c/code\u003e. This is useful if a boxed type is an\ninstantiation of a generic type parameter and cannot be avoided.\u003c/p\u003e\n\u003cpre\u003e\nList\u0026lt;Boolean\u0026gt; list = new ArrayList\u0026lt;\u0026gt;();\nlist.add(true);\nlist.add(false);\nlist.forEach((@NonNull Boolean value) -\u0026gt; {\n  // Compliant\n  if(value) {\n    System.out.println(\"yes\");\n  }\n});\n\n@NonNull Boolean someMethod() { /* ... */ }\n\n// Compliant\nif(someMethod()) { /* ... */ }\n\n@NonNull Boolean boxedNonNull = Boolean.TRUE;\n\n// Compliant\nif(boxedNonNull) { /* ... */ }\n\u003c/pre\u003e",
+                           "code_blocks":  [
+                                               "List\u0026lt;Boolean\u0026gt; list = new ArrayList\u0026lt;\u0026gt;();\nlist.add(true);\nlist.add(false);\nlist.forEach((@NonNull Boolean value) -\u0026gt; {\n  // Compliant\n  if(value) {\n    System.out.println(\"yes\");\n  }\n});\n\n@NonNull Boolean someMethod() { /* ... */ }\n\n// Compliant\nif(someMethod()) { /* ... */ }\n\n@NonNull Boolean boxedNonNull = Boolean.TRUE;\n\n// Compliant\nif(boxedNonNull) { /* ... */ }"
+                                           ]
+                       }
+                   ]
+}

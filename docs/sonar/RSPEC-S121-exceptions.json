@@ -1,0 +1,13 @@
+﻿{
+    "extracted_at":  "2025-09-22T20:56:43+08:00",
+    "source":  "docs/sonar/RSPEC-S121.json",
+    "exceptions":  [
+                       {
+                           "title":  "Exceptions",
+                           "description_html":  "\u003cp\u003eThe rule doesnât raise an issue when the body of an \u003ccode\u003eif\u003c/code\u003e statement is a single \u003ccode\u003ereturn\u003c/code\u003e, \u003ccode\u003ebreak\u003c/code\u003e, or\n\u003ccode\u003econtinue\u003c/code\u003e and is on the same line.\u003c/p\u003e",
+                           "code_blocks":  [
+
+                                           ]
+                       }
+                   ]
+}

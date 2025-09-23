@@ -1,0 +1,27 @@
+﻿{
+    "extracted_at":  "2025-09-22T19:15:06+08:00",
+    "source":  "docs/sonar/RSPEC-1068.json",
+    "exceptions":  [
+                       {
+                           "title":  "Serialization ID fields",
+                           "description_html":  "\u003cp\u003eThe Java serialization runtime associates with each serializable class a version number called \u003ccode\u003eserialVersionUID\u003c/code\u003e, which is used during\ndeserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible for\nserialization.\u003c/p\u003e\n\u003cp\u003eA serializable class can declare its own \u003ccode\u003eserialVersionUID\u003c/code\u003e explicitly by declaring a field named \u003ccode\u003eserialVersionUID\u003c/code\u003e that\nmust be static, final, and of type long. By definition, those \u003ccode\u003eserialVersionUID\u003c/code\u003e fields should not be reported by this rule:\u003c/p\u003e\n\u003cpre\u003e\npublic class MyClass implements java.io.Serializable {\n  private static final long serialVersionUID = 42L;  // Compliant by exception\n}\n\u003c/pre\u003e",
+                           "code_blocks":  [
+                                               "public class MyClass implements java.io.Serializable {\n  private static final long serialVersionUID = 42L;  // Compliant by exception\n}"
+                                           ]
+                       },
+                       {
+                           "title":  "Annotated fields and classes annotated with Lombok annotations",
+                           "description_html":  "\u003cp\u003eThe unused field in this class will not be reported by the rule as it is annotated, except if annotation class \u003ccode\u003eSomeAnnotation\u003c/code\u003e is\nlisted in the \u003ccode\u003eignoreAnnotations\u003c/code\u003e parameter (see Parameters).\u003c/p\u003e\n\u003cpre\u003e\npublic class MyClass {\n  @SomeAnnotation\n  private int unused;  // Compliant by exception\n}\n\u003c/pre\u003e",
+                           "code_blocks":  [
+                                               "public class MyClass {\n  @SomeAnnotation\n  private int unused;  // Compliant by exception\n}"
+                                           ]
+                       },
+                       {
+                           "title":  "Fields from classes with native methods",
+                           "description_html":  "\u003cp\u003eThe unused field in this class will not be reported by the rule as it might be used by native code.\u003c/p\u003e\n\u003cpre\u003e\npublic class MyClass {\n  private int unused = 42;  // Compliant by exception\n  private native static void doSomethingNative();\n}\n\u003c/pre\u003e",
+                           "code_blocks":  [
+                                               "public class MyClass {\n  private int unused = 42;  // Compliant by exception\n  private native static void doSomethingNative();\n}"
+                                           ]
+                       }
+                   ]
+}

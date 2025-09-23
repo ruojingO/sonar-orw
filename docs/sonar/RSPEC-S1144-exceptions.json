@@ -1,0 +1,13 @@
+﻿{
+    "extracted_at":  "2025-09-22T19:15:06+08:00",
+    "source":  "docs/sonar/RSPEC-1144.json",
+    "exceptions":  [
+                       {
+                           "title":  "annotated methods \u003c/li\u003e \u003cli\u003e methods with parameters that are annotated with \u003ccode\u003e@javax.enterprise.event.Observes\u003c/code\u003e",
+                           "description_html":  "\u003cp\u003eThe rule does not take reflection into account, which means that issues will be raised on \u003ccode\u003eprivate\u003c/code\u003e methods that are only accessed using\nthe reflection API.\u003c/p\u003e",
+                           "code_blocks":  [
+
+                                           ]
+                       }
+                   ]
+}

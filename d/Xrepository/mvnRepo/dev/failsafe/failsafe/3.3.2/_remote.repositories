@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Sep 23 21:12:42 CST 2025
+failsafe-3.3.2.jar>aliyun-plugin=
+failsafe-3.3.2.jar>aliyun-public=
+failsafe-3.3.2.pom>aliyun-public=

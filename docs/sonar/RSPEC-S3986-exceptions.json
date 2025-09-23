@@ -1,0 +1,13 @@
+﻿{
+    "extracted_at":  "2025-09-22T19:15:06+08:00",
+    "source":  "docs/sonar/RSPEC-3986.json",
+    "exceptions":  [
+                       {
+                           "title":  "Exceptions",
+                           "description_html":  "\u003cpre\u003e\nDate date = new SimpleDateFormat(\"yyyy/MM/dd\").parse(\"2015/12/31\");\nString result = new SimpleDateFormat(\"YYYY-ww\").format(date);  //compliant, \u0027Week year\u0027 is used along with \u0027Week of year\u0027. result = \u00272016-01\u0027\nDateTimeFormatter.ofPattern(\"YYYY-ww\").format(date); //compliant; yields \u00272016-01\u0027 as expected\n\u003c/pre\u003e",
+                           "code_blocks":  [
+                                               "Date date = new SimpleDateFormat(\"yyyy/MM/dd\").parse(\"2015/12/31\");\nString result = new SimpleDateFormat(\"YYYY-ww\").format(date);  //compliant, \u0027Week year\u0027 is used along with \u0027Week of year\u0027. result = \u00272016-01\u0027\nDateTimeFormatter.ofPattern(\"YYYY-ww\").format(date); //compliant; yields \u00272016-01\u0027 as expected"
+                                           ]
+                       }
+                   ]
+}

@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Sep 23 21:12:41 CST 2025
+rewrite-templating-1.35.0.jar>aliyun-plugin=
+rewrite-templating-1.35.0.jar>aliyun-public=
+rewrite-templating-1.35.0.pom>aliyun-public=

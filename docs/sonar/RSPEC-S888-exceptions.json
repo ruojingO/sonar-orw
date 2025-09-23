@@ -1,0 +1,13 @@
+﻿{
+    "extracted_at":  "2025-09-22T19:15:06+08:00",
+    "source":  "docs/sonar/RSPEC-888.json",
+    "exceptions":  [
+                       {
+                           "title":  "starts below the ending value and is incremented by 1 on each iteration. \u003c/li\u003e \u003cli\u003e starts above the ending value and is decremented by 1 on each iteration.",
+                           "description_html":  "\u003cp\u003eEquality operators are also ignored when the test is against \u003ccode\u003enull\u003c/code\u003e.\u003c/p\u003e\n\u003cpre\u003e\nfor (int i = 0; arr[i] != null; i++) {\n  // ...\n}\n\nfor (int i = 0; (item = arr[i]) != null; i++) {\n  // ...\n}\n\u003c/pre\u003e",
+                           "code_blocks":  [
+                                               "for (int i = 0; arr[i] != null; i++) {\n  // ...\n}\n\nfor (int i = 0; (item = arr[i]) != null; i++) {\n  // ...\n}"
+                                           ]
+                       }
+                   ]
+}

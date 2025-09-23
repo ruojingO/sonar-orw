@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Sep 23 21:12:42 CST 2025
+checker-qual-3.19.0.jar>aliyun-plugin=
+checker-qual-3.19.0.jar>aliyun-public=
+checker-qual-3.19.0.pom>aliyun-public=

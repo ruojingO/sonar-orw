@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Sep 23 21:12:41 CST 2025
+objenesis-3.4.jar>aliyun-plugin=
+objenesis-3.4.jar>aliyun-public=
+objenesis-3.4.pom>aliyun-public=

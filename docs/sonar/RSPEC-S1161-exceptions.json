@@ -1,0 +1,13 @@
+﻿{
+    "extracted_at":  "2025-09-22T19:15:06+08:00",
+    "source":  "docs/sonar/RSPEC-1161.json",
+    "exceptions":  [
+                       {
+                           "title":  "Exceptions",
+                           "description_html":  "\u003cp\u003eThis rule does not raise issues when overriding methods from \u003ccode\u003eObject\u003c/code\u003e (eg: \u003ccode\u003eequals()\u003c/code\u003e, \u003ccode\u003ehashCode()\u003c/code\u003e,\n\u003ccode\u003etoString()\u003c/code\u003e, …​).\u003c/p\u003e",
+                           "code_blocks":  [
+
+                                           ]
+                       }
+                   ]
+}

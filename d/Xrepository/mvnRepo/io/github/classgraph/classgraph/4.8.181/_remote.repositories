@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Sep 23 21:12:41 CST 2025
+classgraph-4.8.181.jar>aliyun-plugin=
+classgraph-4.8.181.jar>aliyun-public=
+classgraph-4.8.181.pom>aliyun-public=

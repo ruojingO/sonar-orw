@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Sep 23 21:12:41 CST 2025
+jsonrpc-1.0.1.jar>aliyun-plugin=
+jsonrpc-1.0.1.jar>aliyun-public=
+jsonrpc-1.0.1.pom>aliyun-public=

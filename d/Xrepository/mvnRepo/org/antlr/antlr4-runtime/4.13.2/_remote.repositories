@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Sep 23 21:12:41 CST 2025
+antlr4-runtime-4.13.2.jar>aliyun-plugin=
+antlr4-runtime-4.13.2.jar>aliyun-public=
+antlr4-runtime-4.13.2.pom>aliyun-public=
