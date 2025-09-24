@@ -1,56 +1,57 @@
 # Repository Guidelines
 
-Use this guide to keep contributions aligned while the codebase is being assembled.
+## Project Snapshot
+- Sonar Rules vs OpenRewrite Recipes Lab targets JDK 8 with Maven 3.9+, comparing SonarQube rule behaviour to OpenRewrite recipes.
+- Source code lives entirely under `src/test/java`, where each Sonar rule owns its own package of compliant and noncompliant examples.
+- Rewrite runs produce diffs and guard outputs that are archived in `docs/` and `logs/` to support analysis.
+- Python helper scripts in `tools/` assist with scraping RSPEC content and generating example snippets.
 
-## Project Structure & Module Organization
-Organize application code under `src/`, grouped by domain modules, with shared helpers in `src/common/`.
-Mirror that layout in `tests/` so every module ships with unit and integration coverage.
-Keep environment definitions or IaC artifacts in `infra/`, documentation drafts in `docs/`, and sample datasets or fixtures in `assets/seed/`.
-Add a `scripts/` folder for repeatable CLI utilities. A healthy tree should resemble:
+## Directory Layout
+- `src/test/java/com/sonarorw/rules/<rule_id>/` - Java samples; keep files in the pattern `<RuleId>_uncompliant.java`, `<RuleId>_compliant_official.java`, plus optional `_exceptions.java` when needed.
+- `docs/` - research material and generated artifacts.
+  - `docs/sonar/` caches `RSPEC-*.json` payloads pulled from Sonar.
+  - `docs/diffs/` stores Markdown diffs emitted after each recipe run.
+  - `docs/mappings/` and `docs/exceptions/` capture rule-to-recipe notes and edge cases.
+  - `docs/solu*.md` chronicles solution iterations; add new versions rather than overwriting history.
+- `logs/` - raw rewrite logs (scan vs guard) for reproducibility; mirror the naming convention `SXXXX-*.log`.
+- `tools/` - Python utilities; update `README-tools.md` whenever a new script is added.
+- `report.md`, `mytask.md`, `todo.md` - living documents driving the experiment backlog; treat them as part of the deliverable set.
+- `pom.xml` - single source of truth for plugin versions, active rewrite recipes, and rule-specific Maven profiles.
 
-~~~
-src/
-  ingest/
-  analytics/
-  common/
-tests/
-  ingest/
-  analytics/
-docs/
-infra/
-assets/seed/
-scripts/
-~~~
+## Build, Test, and Rewrite Commands
+- `mvn -q --no-transfer-progress verify` runs the full lifecycle (compiles rule samples and executes rewrite plugin dry runs where configured).
+- `mvn rewrite:run -P SXXXX` applies the recipe defined in the matching profile; replace `SXXXX` with the rule identifier (for example `S3457`).
+- `mvn rewrite:dryRun -P SXXXX -Drewrite.metricsJson=logs/SXXXX-exception-scan.log` keeps changes off disk while capturing metrics; reuse the `logs/` folder and naming scheme.
+- `mvn clean` resets the workspace before re-running a recipe to avoid stale diffs.
+- `python tools/generate_rule_snippets.py --rule SXXXX` (optional) regenerates compliant and noncompliant samples from cached RSPEC data.
+Log every command variation you rely on inside `report.md` or the relevant diff so others can reproduce the session.
 
-## Build, Test, and Development Commands
-Centralize workflows in a root `Makefile`; create it if it is missing.
-Maintain these targets:
-- `make setup`: create a virtualenv, install dependencies, and install `pre-commit` hooks.
-- `make lint`: run `ruff check .` then `black --check src tests`.
-- `make test`: execute `pytest --maxfail=1 --disable-warnings`.
-- `make serve`: start the local API once defined (`uvicorn src.app:app --reload`).
-Document any new command in the Makefile `help` target.
+## Working with Rules
+1. Pick the next target from `report.md` or `mytask.md` and confirm its Maven profile exists in `pom.xml`.
+2. Update or add the Java samples under `src/test/java/com/sonarorw/rules/<rule_id>/`, keeping the file naming pattern and minimal imports.
+3. Run `mvn rewrite:run -P <rule_id>` and capture the resulting diff under `docs/diffs/<rule_id>-diff.md`; archive guard and scan logs in `logs/`.
+4. Summarise outcomes in `report.md` (status `YES`, `PARTIAL`, `NO`, etc.) and note any manual adjustments or recipe gaps in `docs/mappings/` or `docs/exceptions/`.
+5. When diffs require human follow up, record TODOs in `todo.md` with direct links to the affected files.
 
-## Coding Style & Naming Conventions
-Target Python 3.11+, 4-space indentation, and UTF-8 text.
-Modules stay in `snake_case.py`, classes use `PascalCase`, functions and variables use `snake_case`, and CLI entry points prefer `kebab-case`.
-Keep imports sorted with `ruff --select I`.
-YAML, JSON, and TOML configs use 2-space indents.
-Run `pre-commit run --all-files` before pushing to catch lint or formatting drift.
+## Coding Standards and Style
+- Java samples should compile on JDK 8; prefer standard Java conventions (4 space indentation, meaningful class names, final fields when appropriate).
+- Keep imports minimal; rely on `org.openrewrite.java.format.AutoFormat` (enabled globally) to normalise whitespace and brace placement.
+- Factor shared scaffolding into helper methods inside the same package to avoid introducing a shared `src/main` module unless cross rule reuse becomes substantial.
+- Python helper scripts target Python 3.9+; follow PEP 8, use type hints where practical, and keep external dependencies optional.
+- Preserve ASCII unless the source material mandates Unicode (for example copied rule descriptions).
 
-## Testing Guidelines
-Write tests with `pytest` and mirror package names under `tests/`.
-Prefix files with `test_` and mark long-running suites with `@pytest.mark.slow`.
-Aim for >=90% line coverage via `pytest --cov=src --cov-report=term`.
-Store shared fixtures in `tests/fixtures` and keep sample assets in `assets/seed/` to maintain deterministic runs.
+## Documentation and Reporting
+- Treat `docs/diffs/`, `logs/`, and `report.md` as authoritative evidence; do not delete historical runs. Append with timestamps or version tags when rerunning a rule.
+- File new observations about Sonar and OpenRewrite mismatches under `docs/exceptions/` to keep the reasoning close to the artifacts.
+- Align naming across artifacts (rule ID casing, suffixes like `_exceptions`) so automated parsing remains straightforward.
 
-## Commit & Pull Request Guidelines
-Use Conventional Commit prefixes (`feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `ci`).
-Keep the subject <=72 characters and expand on multi-part changes in the body.
-Each pull request should link an issue or ticket, list validation steps, and supply evidence (logs, screenshots) for user-facing changes.
-Keep scope focused; open a draft PR when coordinating migrations or infra updates.
+## Contribution Process
+- Use Conventional Commit prefixes (`feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `ci`) with subjects no longer than 72 characters.
+- Reference the related rule ID or ticket in the commit body and list the Maven command or commands used for validation.
+- Open draft PRs for large profile additions or when introducing new automation into `tools/`.
+- Before pushing, run the relevant `mvn` commands (and Python scripts, if touched) to confirm reproducibility.
 
-## Security & Configuration Tips
-Never commit secrets; keep local values in `.env` and document required keys in `.env.example`.
-Review dependency updates with `make lint` and `pip-audit` (expose as `make audit`) before merging.
-Store deployment credentials in the CI vault and rotate them whenever integration tests touch external systems.
+## Security and Dependency Notes
+- Do not commit credentials or Sonar tokens; keep local values in `.env` (document keys in `.env.example` if shared configuration emerges).
+- Track Maven dependency updates in `CHANGELOG.md` and rerun `mvn verify` plus `mvn rewrite:dryRun` for a representative rule to detect regressions.
+- When Python dependencies become necessary, pin them in `tools/requirements.txt` and document the installation step in the tools README.
