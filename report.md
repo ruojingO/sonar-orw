@@ -1,4 +1,3 @@
-
 ﻿| Rule | Recipe | Can Fix | Memo | Exception Guard | Exception Memo |
 | --- | --- | --- | --- | --- | --- |
 | S2111 | org.openrewrite.staticanalysis.BigDecimalDoubleConstructorRecipe | YES | 自动将 `new BigDecimal(double)` 替换为 `BigDecimal.valueOf(double)`；已改写官方示例说明以 ASCII 保持描述 | PASS | 官方未提供例外段落，免守护 |
@@ -29,17 +28,3 @@
 | S1155 | org.openrewrite.staticanalysis.IsEmptyCallOnCollections | YES | 使用 isEmpty() 判空 | PASS | 无例外说明，dry-run 仅修改 uncompliant 样例 |
 | S1612 | org.openrewrite.staticanalysis.ReplaceLambdaWithMethodReference | YES | Lambda 替换为方法引用 | PASS | 无例外说明，dry-run 仅修改 uncompliant 样例 |
 | S1125 | org.openrewrite.staticanalysis.SimplifyBooleanExpression | YES | 布尔字面量直接返回 | PASS | 无例外说明，dry-run 仅修改 uncompliant 样例 |
-| S1124 | org.openrewrite.staticanalysis.ModifierOrder | TBD | 修饰符顺序规范；准备例外样例 | TBD | 未巡检（待补守护） |
-| S1157 | org.openrewrite.staticanalysis.CaseInsensitiveComparisonsDoNotChangeCase | TBD | 忽略大小写比较不应改变字符串；需补充 | TBD | 未巡检（待补守护） |
-| S1193 | org.openrewrite.staticanalysis.CatchClauseOnlyRethrows | TBD | catch 块仅重新抛出需精简；确认 Sonar 映射 | TBD | 未巡检（待补守护） |
-| S1197 | org.openrewrite.staticanalysis.UseJavaStyleArrayDeclarations | TBD | 数组声明风格；待确认 RSPEC | TBD | 未巡检（待补守护） |
-| S1217 | org.openrewrite.staticanalysis.ReplaceThreadRunWithThreadStart | TBD | YAML 中显式标注 RSPEC-S1217，优先落地 | TBD | 未巡检（待补守护） |
-| S1610 | org.openrewrite.staticanalysis.LambdaBlockToExpression | TBD | Lambda 可改为表达式；需确认规则 | TBD | 未巡检（待补守护） |
-| S1659 | org.openrewrite.staticanalysis.MultipleVariableDeclarations | TBD | 同一语句声明多个变量的规则；待验证 | TBD | 未巡检（待补守护） |
-| S2037 | org.openrewrite.staticanalysis.PreferSystemGetPropertyOverGetenv | TBD | 应使用 System.getProperty；需确认 RSPEC | TBD | 未巡检（待补守护） |
-| S2097 | org.openrewrite.staticanalysis.UnnecessaryCloseInTryWithResources | TBD | try-with-resources 不需要显式 close；需验证 | TBD | 未巡检（待补守护） |
-| S2116 | org.openrewrite.staticanalysis.SimplifyArraysAsList | TBD | Arrays.asList 使用规范；需确定对应规则 | TBD | 未巡检（待补守护） |
-| S2127 | org.openrewrite.staticanalysis.NoValueOfOnStringType | TBD | 不对 String 使用 valueOf；需查证具体规则 | TBD | 未巡检（待补守护） |
-| S2129 | org.openrewrite.staticanalysis.PrimitiveWrapperClassConstructorToValueOf | TBD | 包装类型应使用 valueOf；与 Sonar S2129 相关 | TBD | 未巡检（待补守护） |
-| S2153 | org.openrewrite.staticanalysis.NoPrimitiveWrappersForToStringOrCompareTo | TBD | 包装类型 toString/compareTo 规范；需查证 | TBD | 未巡检（待补守护） |
-| S2204 | org.openrewrite.staticanalysis.AtomicPrimitiveEqualsUsesGet | TBD | Atomic 原语比较应调用 get；待确认 | TBD | 未巡检（待补守护） |

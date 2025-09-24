@@ -1,16 +1,5 @@
 # Build & tool outputs
 /target/
-/tools/rewrite-static/
-
-# Sonar/Rewrite caches and diffs
-docs/diffs/
-docs/exceptions/strategy/
-docs/sonar/
-
-# Logs & patches
-/logs/
-*.log
-*.patch
 
 # Maven local caches accidentally created
 d*/Xrepository/
