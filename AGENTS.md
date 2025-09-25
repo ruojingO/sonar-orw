@@ -1,57 +1,141 @@
-# Repository Guidelines
+# Repository Guidelines (Minimal • Single-Module Maven • JDK 17 • Tests Optional)
 
-## Project Snapshot
-- Sonar Rules vs OpenRewrite Recipes Lab targets JDK 8 with Maven 3.9+, comparing SonarQube rule behaviour to OpenRewrite recipes.
-- Source code lives entirely under `src/test/java`, where each Sonar rule owns its own package of compliant and noncompliant examples.
-- Rewrite runs produce diffs and guard outputs that are archived in `docs/` and `logs/` to support analysis.
-- Python helper scripts in `tools/` assist with scraping RSPEC content and generating example snippets.
+> Purpose: provide the smallest, explicit rails for automation/agents in this repo.  
+> Scope: allow POM edits, keep old configs via additional profiles (do not remove), default to no tests, and fix build/runtime errors immediately.
 
-## Directory Layout
-- `src/test/java/com/sonarorw/rules/<rule_id>/` - Java samples; keep files in the pattern `<RuleId>_uncompliant.java`, `<RuleId>_compliant_official.java`, plus optional `_exceptions.java` when needed.
-- `docs/` - research material and generated artifacts.
-  - `docs/sonar/` caches `RSPEC-*.json` payloads pulled from Sonar.
-  - `docs/diffs/` stores Markdown diffs emitted after each recipe run.
-  - `docs/mappings/` and `docs/exceptions/` capture rule-to-recipe notes and edge cases.
-  - `docs/solu*.md` chronicles solution iterations; add new versions rather than overwriting history.
-- `logs/` - raw rewrite logs (scan vs guard) for reproducibility; mirror the naming convention `SXXXX-*.log`.
-- `tools/` - Python utilities; update `README-tools.md` whenever a new script is added.
-- `report.md`, `mytask.md`, `todo.md` - living documents driving the experiment backlog; treat them as part of the deliverable set.
-- `pom.xml` - single source of truth for plugin versions, active rewrite recipes, and rule-specific Maven profiles.
+---
 
-## Build, Test, and Rewrite Commands
-- `mvn -q --no-transfer-progress verify` runs the full lifecycle (compiles rule samples and executes rewrite plugin dry runs where configured).
-- `mvn rewrite:run -P SXXXX` applies the recipe defined in the matching profile; replace `SXXXX` with the rule identifier (for example `S3457`).
-- `mvn rewrite:dryRun -P SXXXX -Drewrite.metricsJson=logs/SXXXX-exception-scan.log` keeps changes off disk while capturing metrics; reuse the `logs/` folder and naming scheme.
-- `mvn clean` resets the workspace before re-running a recipe to avoid stale diffs.
-- `python tools/generate_rule_snippets.py --rule SXXXX` (optional) regenerates compliant and noncompliant samples from cached RSPEC data.
-Log every command variation you rely on inside `report.md` or the relevant diff so others can reproduce the session.
+## 0) response with Chinese
+  pls thinking or response  always with Chinese , althought i often use english&pinyin even pali together to ask ,input. 
+  
+  
 
-## Working with Rules
-1. Pick the next target from `report.md` or `mytask.md` and confirm its Maven profile exists in `pom.xml`.
-2. Update or add the Java samples under `src/test/java/com/sonarorw/rules/<rule_id>/`, keeping the file naming pattern and minimal imports.
-3. Run `mvn rewrite:run -P <rule_id>` and capture the resulting diff under `docs/diffs/<rule_id>-diff.md`; archive guard and scan logs in `logs/`.
-4. Summarise outcomes in `report.md` (status `YES`, `PARTIAL`, `NO`, etc.) and note any manual adjustments or recipe gaps in `docs/mappings/` or `docs/exceptions/`.
-5. When diffs require human follow up, record TODOs in `todo.md` with direct links to the affected files.
+## 1) Purpose
+Give agents a minimal, unambiguous operating guide: where files go, how to build/run, when to sync docs, how/when to modify the POM, and how to respond to errors.
 
-## Coding Standards and Style
-- Java samples should compile on JDK 8; prefer standard Java conventions (4 space indentation, meaningful class names, final fields when appropriate).
-- Keep imports minimal; rely on `org.openrewrite.java.format.AutoFormat` (enabled globally) to normalise whitespace and brace placement.
-- Factor shared scaffolding into helper methods inside the same package to avoid introducing a shared `src/main` module unless cross rule reuse becomes substantial.
-- Python helper scripts target Python 3.9+; follow PEP 8, use type hints where practical, and keep external dependencies optional.
-- Preserve ASCII unless the source material mandates Unicode (for example copied rule descriptions).
+---
 
-## Documentation and Reporting
-- Treat `docs/diffs/`, `logs/`, and `report.md` as authoritative evidence; do not delete historical runs. Append with timestamps or version tags when rerunning a rule.
-- File new observations about Sonar and OpenRewrite mismatches under `docs/exceptions/` to keep the reasoning close to the artifacts.
-- Align naming across artifacts (rule ID casing, suffixes like `_exceptions`) so automated parsing remains straightforward.
+## 2) Scope & Boundaries
+- ✅ **Allowed**: add/modify code, tests, scripts, docs; **modify `pom.xml`** (create/adjust profiles as needed).
+- ✅ **Preserve**: keep existing profiles/configs; **do not delete** legacy settings—add new profiles or comment with rationale.
+- ✅ **Error handling**: on compile/run failures, **fix immediately** to a buildable/runnable state—no waiting.
+- ⛔ **Git**: agents **only** `git add/commit`. All `pull/push/merge/rebase/tag` are manual/external.
+- ⛔ No external toolchains beyond Maven/JDK mentioned here (no Make, static analysis, coverage, OpenRewrite, OWASP).
 
-## Contribution Process
-- Use Conventional Commit prefixes (`feat`, `fix`, `docs`, `chore`, `refactor`, `test`, `ci`) with subjects no longer than 72 characters.
-- Reference the related rule ID or ticket in the commit body and list the Maven command or commands used for validation.
-- Open draft PRs for large profile additions or when introducing new automation into `tools/`.
-- Before pushing, run the relevant `mvn` commands (and Python scripts, if touched) to confirm reproducibility.
+---
 
-## Security and Dependency Notes
-- Do not commit credentials or Sonar tokens; keep local values in `.env` (document keys in `.env.example` if shared configuration emerges).
-- Track Maven dependency updates in `CHANGELOG.md` and rerun `mvn verify` plus `mvn rewrite:dryRun` for a representative rule to detect regressions.
-- When Python dependencies become necessary, pin them in `tools/requirements.txt` and document the installation step in the tools README.
+## 3) Layout (Single Module)
+```
+
+pom.xml
+src/
+main/
+java/
+resources/
+test/
+java/
+docs/
+scripts/
+README.md
+CHANGELOG.md
+
+````
+
+---
+
+## 4) Build & Run (JDK 17 • Maven 3.x)
+- **Default (skip tests)**  
+  Build: `mvn -DskipTests clean package`  
+  Run (example): `java -jar target/<app>.jar`
+
+- **Enable tests on demand**  
+  Use `mvn test` or activate a testing profile (see §5).
+
+---
+
+## 5) Tests (Optional • JUnit 5)
+- Framework: **JUnit 5** (`junit-jupiter`).
+- Only run tests when explicitly requested: `mvn test` or `mvn -DskipTests=false verify`.
+- Test placement mirrors source; name classes `*Test.java`.
+
+---
+
+## 6) POM Editing Rules
+- Agents may change `pom.xml` **as needed** to restore build/run or implement a requested feature.
+- **Do not remove** existing profiles/legacy settings. If replacement is required, **add a new profile** or **comment old lines with reasons**.
+- If plugin/dep conflicts or outdated versions break the build, **adjust to a working version immediately** and add a `fix:` entry to `CHANGELOG.md`.
+
+**Profile Template (example, adapt as needed):**
+```xml
+<profiles>
+  <profile>
+    <id>default-run</id>
+    <properties>
+      <maven.compiler.release>17</maven.compiler.release>
+    </properties>
+  </profile>
+
+  <profile>
+    <id>tests-on</id>
+    <properties>
+      <maven.test.skip>false</maven.test.skip>
+    </properties>
+  </profile>
+
+  <profile>
+    <id>legacy-keep</id>
+    <!-- Keep historical config here as comments or inactive props for reference.
+         Do NOT delete legacy settings; do NOT auto-activate this profile. -->
+    <!-- <maven.compiler.source>1.8</maven.compiler.source> -->
+    <!-- <maven.compiler.target>1.8</maven.compiler.target> -->
+  </profile>
+</profiles>
+````
+
+---
+
+## 7) Docs Sync (README / CHANGELOG are mandatory)
+
+* Repo **must contain** `README.md` and `CHANGELOG.md`.
+* Agents **must sync docs** when any of the following occurs:
+
+  1. A **major feature** is completed/merged.
+  2. Any user-visible change to build/run/config/dependencies.
+  3. A **fix** that affects build/startup behavior.
+* **Minimum content**:
+
+  * `README.md`: project intro, required JDK/Maven, build/run commands, config example.
+  * `CHANGELOG.md`: brief Conventional-Commit-style entries (`feat:`, `fix:`, `docs:`). No heavy formatting required.
+
+---
+
+## 8) Failure & Immediate Repair (“Just do it”)
+
+* If any of the following is true, **repair and commit immediately**:
+
+  * `mvn -DskipTests clean package` fails.
+  * Runtime command errors (missing deps/plugins/entrypoint).
+* Use **Conventional Commits** for messages, e.g.
+  `fix(build): align surefire plugin for JDK17`
+* When repairs override legacy behavior, add a one-line rationale in `CHANGELOG.md`.
+
+---
+
+## 9) Daily Commands (keep it this simple)
+
+* **Fast build (no tests)**: `mvn -DskipTests clean package`
+* **With tests**: `mvn -Ptests-on clean verify`
+
+---
+
+## 10) Risks (Minimal reminders)
+
+* Allowing agents to edit the POM can shift dependency semantics; **first ensure build/run**, then minimize blast radius.
+* Keeping legacy profiles increases complexity; choose clear names and avoid auto-activations to prevent config mixing.
+* Failing to sync docs = future confusion. Update `README/CHANGELOG` right after major/visible changes.
+
+
+
+## 11) response with Chinese
+  pls thinking or response  always with Chinese , althought i often use english&pinyin even pali together to ask ,input. 
+  
