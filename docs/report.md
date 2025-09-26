@@ -1,4 +1,4 @@
-﻿| Rule | Recipe | Can Fix | Memo | Exception Guard | Exception Memo |
+| Rule | Recipe | Can Fix | Memo | Exception Guard | Exception Memo |
 | --- | --- | --- | --- | --- | --- |
 | S2111 | org.openrewrite.staticanalysis.BigDecimalDoubleConstructorRecipe | YES | 自动将 `new BigDecimal(double)` 替换为 `BigDecimal.valueOf(double)`；已改写官方示例说明以 ASCII 保持描述 | PASS | 官方未提供例外段落，免守护 |
 | S3457 | org.openrewrite.staticanalysis.FixStringFormatExpressions + UsePortableNewlines | PARTIAL | 移除多余实参但未替换 `{0}` 样式占位符，需人工补充；详见 S3457-diff.md | PASS | 官方未提供例外段落，免守护 |
@@ -28,3 +28,19 @@
 | S1155 | org.openrewrite.staticanalysis.IsEmptyCallOnCollections | YES | 使用 isEmpty() 判空 | PASS | 无例外说明，dry-run 仅修改 uncompliant 样例 |
 | S1612 | org.openrewrite.staticanalysis.ReplaceLambdaWithMethodReference | YES | Lambda 替换为方法引用 | PASS | 无例外说明，dry-run 仅修改 uncompliant 样例 |
 | S1125 | org.openrewrite.staticanalysis.SimplifyBooleanExpression | YES | 布尔字面量直接返回 | PASS | 无例外说明，dry-run 仅修改 uncompliant 样例 |
+| S2129 | org.openrewrite.staticanalysis.PrimitiveWrapperClassConstructorToValueOf | YES | new Integer -> Integer.valueOf 已通过 dry-run | PASS | 根据配方默认例外 |
+| TBD | TBD | TBD | 尚未验证 | TBD | 尚未验证 |
+| S1124 | org.openrewrite.staticanalysis.ModifierOrder | YES | 修正修饰符顺序为 public static final | PASS | 官方无例外 |
+| S1659 | org.openrewrite.staticanalysis.MultipleVariableDeclarations | YES | 并列声明拆分为单独语句 | PASS | 官方无例外 |
+| S1193 | org.openrewrite.staticanalysis.CatchClauseOnlyRethrows | YES | dry-run 自动移除了仅重新抛出的 catch | PASS | 官方无例外 |
+| S1157 | org.openrewrite.staticanalysis.CaseInsensitiveComparisonsDoNotChangeCase | NO | 未找到示例触发（toLowerCase 场景未改写） | PASS | 官方无例外 |
+| S2204 | org.openrewrite.staticanalysis.AtomicPrimitiveEqualsUsesGet | NO | dry-run 无改动（需进一步研究触发条件） | PASS | 官方无例外 |
+| S2037 | org.openrewrite.staticanalysis.PreferSystemGetPropertyOverGetenv | NO | System.getenv 示例未被改写，可能需特定属性 | PASS | 官方无例外 |
+| S2127 | TBD | TBD | 尚未验证 | TBD | 尚未验证 |
+| TBD | TBD | TBD | 尚未验证 | TBD | 尚未验证 |
+| S2116 | org.openrewrite.staticanalysis.SimplifyArraysAsList | NO | 现有示例未触发改写；需补充符合条件的代码 | PASS | 官方无例外 |
+| S1610 | org.openrewrite.staticanalysis.LambdaBlockToExpression | YES | Lambda 块已改写为表达式 | PASS | 官方无例外 |
+| S1217 | org.openrewrite.staticanalysis.ReplaceThreadRunWithThreadStart | YES | new Thread(task).run() 改为 start() | PASS | 官方无例外 |
+| S2153 | org.openrewrite.staticanalysis.NoPrimitiveWrappersForToStringOrCompareTo | NO | Integer.toString 示例未触发；需确认适用场景 | PASS | 官方无例外 |
+| S1197 | org.openrewrite.staticanalysis.UseJavaStyleArrayDeclarations | YES | 数组声明已自动改为 Java 风格 | PASS | 官方无例外 |
+| S2097 | org.openrewrite.staticanalysis.UnnecessaryCloseInTryWithResources | YES | try-with-resources 内的显式 close 已被删除 | PASS | 官方无例外 |
