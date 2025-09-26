@@ -6,8 +6,8 @@
 ---
 
 ## 0) response with Chinese
-  pls thinking or response  always with Chinese , althought i often use english&pinyin even pali together to ask ,input. 
-  
+  pls thinking or response  and all docs  always with Chinese , althought i often use english&pinyin even pali together to ask ,input. 
+
   
 
 ## 1) Purpose
@@ -16,7 +16,7 @@ Give agents a minimal, unambiguous operating guide: where files go, how to build
 ---
 
 ## 2) Scope & Boundaries
-- ✅ **Allowed**: add/modify code, tests, scripts, docs; **modify `pom.xml`** (create/adjust profiles as needed).
+- ✅ **Allowed**: add/modify code, tests, scripts, docs; **modify `pom.xml`** (create/adjust profiles as needed,or create new pom-xxx.xml).
 - ✅ **Preserve**: keep existing profiles/configs; **do not delete** legacy settings—add new profiles or comment with rationale.
 - ✅ **Error handling**: on compile/run failures, **fix immediately** to a buildable/runnable state—no waiting.
 - ⛔ **Git**: agents **only** `git add/commit`. All `pull/push/merge/rebase/tag` are manual/external.
@@ -138,4 +138,3 @@ CHANGELOG.md
 
 ## 11) response with Chinese
   pls thinking or response  always with Chinese , althought i often use english&pinyin even pali together to ask ,input. 
-  
