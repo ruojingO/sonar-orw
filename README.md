@@ -5,6 +5,7 @@
 ## 目录结构
 - `docs/`：说明文档与外部资料缓存
   - `sonar/RSPEC-xxxx.json`：从官方 `page-data` 抓取的规则描述
+  - `OpenRewrite-RSPEC-mapping__corrected_subset_.csv`：Sonar ↔ OpenRewrite 最新映射表（取代舊版 `sonar-openrewrite.csv`）
   - `diffs/`：各规则执行后的差异文件（`Sxxxx-diff.md`）
   - `solu.md`：当前执行方案（V8）
 - `src/test/java/com/sonarorw/rules/`：按规则划分的示例源码目录

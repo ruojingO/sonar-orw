@@ -62,7 +62,7 @@ CHANGELOG.md
 
 ## 6) POM Editing Rules
 - Agents may change `pom.xml` **as needed** to restore build/run or implement a requested feature.
-- **Do not remove** existing profiles/legacy settings. If replacement is required, **add a new profile** or **comment old lines with reasons**.
+- **Do not remove** existing profiles/legacy settings. If replacement is required, **add a new profile** or **comment old lines with reasons**.or create multi pom, and flexible to switch different big config. 
 - If plugin/dep conflicts or outdated versions break the build, **adjust to a working version immediately** and add a `fix:` entry to `CHANGELOG.md`.
 
 **Profile Template (example, adapt as needed):**
@@ -106,6 +106,7 @@ CHANGELOG.md
 
   * `README.md`: project intro, required JDK/Maven, build/run commands, config example.
   * `CHANGELOG.md`: brief Conventional-Commit-style entries (`feat:`, `fix:`, `docs:`). No heavy formatting required.
+  * all release doc,must use Chinese  
 
 ---
 
@@ -137,4 +138,4 @@ CHANGELOG.md
 
 
 ## 11) response with Chinese
-  pls thinking or response  always with Chinese , althought i often use english&pinyin even pali together to ask ,input. 
+  pls thinking or response  and all docs always with Chinese , although i often use english&pinyin even pali together to ask ,input. 
