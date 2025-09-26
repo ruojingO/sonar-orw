@@ -18,7 +18,7 @@
     <junit.jupiter.version>5.13.3</junit.jupiter.version>
     <junit.platform.version>1.13.3</junit.platform.version>
     <rewrite.version>8.62.1</rewrite.version>
-    <rewrite.recipes.version>2.17.0</rewrite.recipes.version>
+    <rewrite.recipes.version>2.18.0</rewrite.recipes.version>
     <rewrite.plugin.version>6.18.0</rewrite.plugin.version>
   </properties>
 
@@ -175,6 +175,30 @@
       </build>
     </profile>
     <profile>
+      <id>S1301</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.openrewrite.maven</groupId>
+            <artifactId>rewrite-maven-plugin</artifactId>
+            <version>${rewrite.plugin.version}</version>
+            <configuration>
+              <activeRecipes>
+                <recipe>org.openrewrite.staticanalysis.MinimumSwitchCases</recipe>
+              </activeRecipes>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.openrewrite.recipe</groupId>
+                <artifactId>rewrite-static-analysis</artifactId>
+                <version>${rewrite.recipes.version}</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
       <id>S2692</id>
       <build>
         <plugins>
@@ -186,6 +210,30 @@
               <activeRecipes>
                 <recipe>org.openrewrite.staticanalysis.IndexOfShouldNotCompareGreaterThanZero</recipe>
                 <recipe>org.openrewrite.staticanalysis.IndexOfReplaceableByContains</recipe>
+              </activeRecipes>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.openrewrite.recipe</groupId>
+                <artifactId>rewrite-static-analysis</artifactId>
+                <version>${rewrite.recipes.version}</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>S2737</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.openrewrite.maven</groupId>
+            <artifactId>rewrite-maven-plugin</artifactId>
+            <version>${rewrite.plugin.version}</version>
+            <configuration>
+              <activeRecipes>
+                <recipe>org.openrewrite.staticanalysis.CatchClauseOnlyRethrows</recipe>
               </activeRecipes>
             </configuration>
             <dependencies>
@@ -368,6 +416,30 @@
       </build>
     </profile>
     <profile>
+      <id>S2959</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.openrewrite.maven</groupId>
+            <artifactId>rewrite-maven-plugin</artifactId>
+            <version>${rewrite.plugin.version}</version>
+            <configuration>
+              <activeRecipes>
+                <recipe>org.openrewrite.staticanalysis.RemoveExtraSemicolons</recipe>
+              </activeRecipes>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.openrewrite.recipe</groupId>
+                <artifactId>rewrite-static-analysis</artifactId>
+                <version>${rewrite.recipes.version}</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
       <id>S3020</id>
       <build>
         <plugins>
@@ -462,7 +534,32 @@
           </plugin>
         </plugins>
       </build>
-    </profile>    <profile>
+    </profile>
+    <profile>
+      <id>S1117</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.openrewrite.maven</groupId>
+            <artifactId>rewrite-maven-plugin</artifactId>
+            <version>${rewrite.plugin.version}</version>
+            <configuration>
+              <activeRecipes>
+                <recipe>org.openrewrite.staticanalysis.HiddenField</recipe>
+              </activeRecipes>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.openrewrite.recipe</groupId>
+                <artifactId>rewrite-static-analysis</artifactId>
+                <version>${rewrite.recipes.version}</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
       <id>S888</id>
       <build>
         <plugins>
@@ -727,6 +824,30 @@
       </build>
     </profile>
     <profile>
+      <id>S1858</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.openrewrite.maven</groupId>
+            <artifactId>rewrite-maven-plugin</artifactId>
+            <version>${rewrite.plugin.version}</version>
+            <configuration>
+              <activeRecipes>
+                <recipe>org.openrewrite.staticanalysis.NoToStringOnStringType</recipe>
+              </activeRecipes>
+            </configuration>
+            <dependencies>
+              <dependency>
+                <groupId>org.openrewrite.recipe</groupId>
+                <artifactId>rewrite-static-analysis</artifactId>
+                <version>${rewrite.recipes.version}</version>
+              </dependency>
+            </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
       <id>S1125</id>
       <build>
         <plugins>
@@ -802,12 +923,6 @@
     </profile>
   </profiles>
 </project>
-
-
-
-
-
-
 
 
 

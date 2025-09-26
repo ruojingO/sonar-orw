@@ -4,6 +4,7 @@
 | S3457 | org.openrewrite.staticanalysis.FixStringFormatExpressions + UsePortableNewlines | PARTIAL | 移除多余实参但未替换 `{0}` 样式占位符，需人工补充；详见 S3457-diff.md | PASS | 官方未提供例外段落，免守护 |
 | S3986 | org.openrewrite.staticanalysis.ReplaceWeekYearWithYear | YES | `YYYY` 模式全部替换为 `yyyy`，详见 S3986-diff.md | PASS | 保留周基日期格式（YYYY-ww）例外，守护通过 |
 | S128 | org.openrewrite.staticanalysis.FallThrough | YES | 自动补齐 case 2 的 `break`，详见 S128-diff.md | PASS | 允许空 case、fallthrough 注释、return/throw/continue；例外样例守护通过 |
+| S1301 | org.openrewrite.staticanalysis.MinimumSwitchCases | YES | 仅有单个分支的 `switch` 将被重写成 `if/else` 结构 | PASS | 官方未提供例外段落，免守护 |
 | S2692 | org.openrewrite.staticanalysis.IndexOfShouldNotCompareGreaterThanZero + IndexOfReplaceableByContains | PARTIAL | 将 `> 0` 改为 `>= 1`，但未自动改用 `contains`，详见 S2692-diff.md | PASS | 官方未提供例外段落，免守护 |
 | S1481 | org.openrewrite.staticanalysis.RemoveUnusedLocalVariables | YES | 删除未使用的局部变量 `seconds`，详见 S1481-diff.md | PASS | 官方未提供例外段落，免守护 |
 | S1068 | org.openrewrite.staticanalysis.RemoveUnusedPrivateFields | YES | 删除未使用的私有字段 `foo`，详见 S1068-diff.md | PASS | 已解析官方例外（serialVersionUID、注解字段、native 场景），_exceptions.java 守护通过 |
@@ -13,9 +14,12 @@
 | S1132 | org.openrewrite.staticanalysis.EqualsAvoidsNull | YES | 调整为 ``"foo".equals(value)`` 模式，详见 S1132-diff.md | PASS | 官方未提供例外段落，免守护 |
 | S4973 | org.openrewrite.staticanalysis.StringLiteralEquality | YES | 将字面量比较从 `==` 改为 `equals`，详见 S4973-diff.md | PASS | 官方未提供例外段落，免守护 |
 | S3020 | org.openrewrite.staticanalysis.CollectionToArrayShouldHaveProperType | YES | 自动改为传入正确类型数组，详见 S3020-diff.md | PASS | 官方未提供例外段落，免守护 |
+| S2959 | org.openrewrite.staticanalysis.RemoveExtraSemicolons | YES | 删除 `for` 循环体内多余的空语句，避免意外跳过主体 | PASS | 官方未提供例外段落，免守护 |
+| S1858 | org.openrewrite.staticanalysis.NoToStringOnStringType | YES | 移除对 `String` 类对象多余的 `toString()` 调用，直接使用原始值比较 | PASS | 官方未提供例外段落，免守护 |
 | S2057 | org.openrewrite.staticanalysis.AddSerialVersionUidToSerializable | YES | 自动补充 `serialVersionUID` 字段，详见 S2057-diff.md | PASS | 记录类、Swing/AWT、Throwable、@SuppressWarnings("serial") 例外，守护通过 |
 | S1161 | org.openrewrite.staticanalysis.MissingOverrideAnnotation | YES | 自动为重写方法添加 `@Override`，详见 S1161-diff.md | PASS | 仅针对 Object 方法例外，示例守护通过 |
 | S1116 | org.openrewrite.staticanalysis.RemoveExtraSemicolons | YES | 移除了多余的分号与空语句，详见 S1116-diff.md | PASS | 官方未提供例外段落，免守护 |
+| S1117 | org.openrewrite.staticanalysis.HiddenField | YES | 参数或局部变量覆盖字段时自动补上 `this.` 前缀 | PASS | 官方未提供例外段落，免守护 |
 | S5411 | org.openrewrite.staticanalysis.AvoidBoxedBooleanExpressions | YES | 将 `if (Boolean)` 改为显式 `Boolean.TRUE.equals(...)` 检查，详见 S5411-diff.md | PASS | NonNull 注解场景守护通过 |
 | S1126 | org.openrewrite.staticanalysis.SimplifyBooleanReturn | YES | 合并 `if-else` 布尔返回为表达式，详见 S1126-diff.md | PASS | 官方未提供例外段落，免守护 |
 | S2293 | org.openrewrite.staticanalysis.UseDiamondOperator | YES | 自动应用菱形操作符，详见 S2293-diff.md | PASS | 官方未提供例外段落，免守护 |
@@ -31,7 +35,7 @@
 | S3599 | org.openrewrite.staticanalysis.NoDoubleBraceInitialization | YES | 自动将双大括号初始化重构为标准集合初始化 | PASS | 官方未提供例外段落，免守护 |
 | S1124 | org.openrewrite.staticanalysis.ModifierOrder | YES | 修正修饰符顺序为 public static final | PASS | 官方无例外 |
 | S1659 | org.openrewrite.staticanalysis.MultipleVariableDeclarations | YES | 并列声明拆分为单独语句 | PASS | 官方无例外 |
-| S1193 | org.openrewrite.staticanalysis.CatchClauseOnlyRethrows | YES | dry-run 自动移除了仅重新抛出的 catch；缺少官方 compliant 示例 | PASS | 官方无例外 |
+| S2737 | org.openrewrite.staticanalysis.CatchClauseOnlyRethrows | YES | dry-run 自动移除了仅重新抛出的 catch；缺少官方 compliant 示例 | PASS | 官方无例外 |
 | S1157 | org.openrewrite.staticanalysis.CaseInsensitiveComparisonsDoNotChangeCase | NO | 未找到示例触发（toLowerCase 场景未改写） | PASS | 官方无例外 |
 | S2204 | org.openrewrite.staticanalysis.AtomicPrimitiveEqualsUsesGet | NO | dry-run 无改动（需进一步研究触发条件） | PASS | 官方无例外 |
 | S2037 | org.openrewrite.staticanalysis.PreferSystemGetPropertyOverGetenv | NO | System.getenv 示例未被改写，可能需特定属性 | PASS | 官方无例外 |

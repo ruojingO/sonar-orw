@@ -2,11 +2,15 @@
 
 ### feat (新功能)
 - feat(规则): 为 S3599, S1124, S1197, S1217, S1659, S2129 等6条规则补充了官方合规文件 (`_compliant_official.java`)。
+- feat(规则): 补齐 S1117、S1301、S1858、S2737、S2959 的示例代码与 Maven profile，确保与最新映射表同步。
 
 ### docs (文档)
 - docs(文档): 同步了映射 CSV 与 `report.md` 文件中的规则状态。
 - docs(映射): 移除了旧版 `docs/sonar-openrewrite.csv`，改用 `docs/OpenRewrite-RSPEC-mapping__corrected_subset_.csv`。
 - docs(文档): 为3条因缺少示例或已废弃而无法完成的规则 (S1193, S1610, S2097) 添加了备注说明。
+
+### fix (修复)
+- fix(依赖): 将 `rewrite-static-analysis` 升级到 2.18.0，以获得最新配方（例如 S1217）。
 
 ### docs
 
